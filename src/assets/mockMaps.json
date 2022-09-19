@@ -1,0 +1,11 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Mapa de Maceió",
+      "coordinates": [-9.665833, -35.735],
+      "description": "...",
+      "image": "..."
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { MarkerService } from './../_services/map.service';
 import { AfterViewInit, Component } from '@angular/core';
 import * as L from 'leaflet';
 
@@ -7,12 +8,13 @@ import * as L from 'leaflet';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements AfterViewInit {
-  private map: L.Map | L.LayerGroup<any> | undefined;
+  private map;
 
-  constructor() { }
+  constructor(private markerService: MarkerService) { }
 
   ngAfterViewInit(): void {
     this.initMap();
+    this.markerService.makeMarkers(this.map);
   }
 
   private initMap(): void {
