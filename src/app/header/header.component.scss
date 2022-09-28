@@ -1,0 +1,53 @@
+header {
+  background-color: #eeeeee;
+  box-shadow: 1px 2px #888888;
+  height: 6rem;
+
+  .container {  padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+
+    .logo img {
+      height: 5rem;
+    }
+
+    nav {
+      height: 100%;
+
+      .menu-header {
+        display: flex;
+        gap: 2rem;
+        height: 100%;
+
+        .menu-header-item {
+          font-family: Verdana, Tahoma, sans-serif;
+          font-size: 1.5rem;
+          width: 15rem;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          border-radius: .5rem;
+
+          a {
+            color: #333333;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+          }
+
+
+          &:hover {
+            background-color: #888888;
+            transition: 1s;
+
+            a {
+              color: #FFF;
+            }
+          }
+        }
+      }
+    }
+  }
+}
