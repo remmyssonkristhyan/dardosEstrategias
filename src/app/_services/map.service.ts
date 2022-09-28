@@ -19,5 +19,6 @@ export class MarkerService {
         const marker = L.marker([lon, lat]).addTo(map);
       }
     });
+
   }
 }
