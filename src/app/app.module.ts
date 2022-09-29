@@ -14,6 +14,8 @@ import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     FormsModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]
