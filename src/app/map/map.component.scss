@@ -1,5 +1,4 @@
 .map-container {
-  margin: 30px;
 }
 
 .map-frame {
@@ -11,4 +10,39 @@
 #map {
   height: 90vh;
   width: 100%;
+}
+
+.button-location {
+  // height: 43px;
+  // width: 43px;
+  position: absolute;
+  bottom: 240px;
+  right: 23px;
+  z-index: 999;
+  border-radius: 5px;
+  background-color: #eeeeee;
+  color: black;
+  // box-shadow: 1px;
+  // cursor: pointer;
+}
+
+.search-bar {
+  position: absolute;
+  top: 50px;
+  right: 23px;
+  z-index: 999;
+}
+
+.range {
+  position: absolute;
+  top: 150px;
+  right: 23px;
+  z-index: 999;
+}
+
+.isoline {
+  position: absolute;
+  top: 200px;
+  right: 23px;
+  z-index: 999;
 }

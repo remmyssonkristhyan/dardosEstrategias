@@ -1,5 +1,25 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+
 <div class="map-container">
   <div class="map-frame">
-    <div leaflet [leafletOptions]="options" [leafletLayersControl]="layersControl" id="map"></div>
+    <div #map id="map">
+
+      <mat-form-field appearance="outline" class="search-bar">
+        <h2>Isoline</h2>
+        <input matInput type="text" placeholder="Isoline">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="range">
+        <input matInput type="text" placeholder="range">
+      </mat-form-field>
+      <button mat-button (click)="drawIsoline()" class="isoline">Desenhar Isoline</button>
+      <button mat-mini-fab (click)="getLocation()" class="button-location">
+        <mat-icon>location_on</mat-icon>
+      </button>
+    </div>
+
+
   </div>
 </div>
+
+<!-- <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> -->

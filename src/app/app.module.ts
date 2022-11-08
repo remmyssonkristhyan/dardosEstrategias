@@ -15,15 +15,18 @@ import { FormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-
-
+import { LoginComponent } from './login/login.component';
+import { MappositionComponent } from './mapposition/mapposition.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoginComponent,
+    MappositionComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,8 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
     FormsModule,
     MatIconModule,
     MatFormFieldModule,
-    LeafletModule
+    LeafletModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
