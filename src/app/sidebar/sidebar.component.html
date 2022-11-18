@@ -14,9 +14,8 @@
                   {{i.name}}
                 </mat-panel-title>
               </mat-expansion-panel-header>
-              <div *ngIf="i.name === 'Camadas'">
-                <app-layers></app-layers>
-              </div>
+              <app-layers *ngIf="i.name === 'Camadas'"></app-layers>
+              <app-isochrone *ngIf="i.name === 'Isócrona'"></app-isochrone>
             </mat-expansion-panel>
           </div>
       </div>

@@ -1,11 +1,4 @@
-import {
-  Component,
-  ViewChild,
-  ElementRef,
-  Input,
-  SimpleChanges,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import H from '@here/maps-api-for-javascript';
 import * as L from 'leaflet';
 import { control, map, tileLayer } from 'leaflet';

@@ -1,0 +1,17 @@
+<section>
+  <h3>Meio de transporte</h3>
+  <input type="radio" name="pedestre" id="pedestre">&nbsp;
+  <label for="pedestre">Pedestre</label><br>
+  <input type="radio" name="car" id="car">&nbsp;
+  <label for="car">Carro</label><br><br>
+  <h3>Habilitar Transito?</h3>
+  <input type="checkbox" name="traffic" id="traffic">&nbsp;
+  <label for="traffic">Trânsito</label><br><br>
+  <h3>Tempo ou distância?</h3>
+  <input type="radio" name="pedestre" id="pedestre">&nbsp;
+  <label for="pedestre">Tempo</label><br>
+  <input type="radio" name="car" id="car">&nbsp;
+  <label for="car">Distancia</label><br><br>
+  <h3>Alcance</h3>
+  <mat-slider [(ngModel)]="range" min="1" max="100" step="1"></mat-slider>
+</section>

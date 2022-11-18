@@ -22,6 +22,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { LayersComponent } from './layers/layers.component';
+import { IsochroneComponent } from './isochrone/isochrone.component';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { LayersComponent } from './layers/layers.component';
     LoginComponent,
     MappositionComponent,
     LayersComponent,
+    IsochroneComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { LayersComponent } from './layers/layers.component';
     MatSidenavModule,
     MatExpansionModule,
     MatCardModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
