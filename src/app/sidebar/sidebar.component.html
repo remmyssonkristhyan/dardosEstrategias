@@ -1,7 +1,29 @@
-<aside class="sidebar">
-  <mat-form-field>
-    <mat-label>Procurar</mat-label>
-    <input matInput [(ngModel)]="searchTerm" />
-    <mat-icon matPrefix>search</mat-icon>
-  </mat-form-field>
-</aside>
+<mat-sidenav-container class="full-height" autosize="true">
+  <mat-sidenav mode="side" opened (click)="toggleSidebar()">
+
+
+      <div mat-menu-item *ngFor="let i of sideMenu" class="with-icon padded">
+          <div [hidden]="!collapse">
+            <button mat-button (click)="onClick"><mat-icon [matTooltip]="i.toolTip">{{ i.icon }}</mat-icon>&nbsp;</button>
+          </div>
+          <div [hidden]="collapse" (click)="$event.stopPropagation()" style="width: 100%;">
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <mat-icon [matTooltip]="i.toolTip">{{ i.icon }}</mat-icon>&nbsp;
+                  {{i.name}}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div *ngIf="i.name === 'Camadas'">
+                <app-layers></app-layers>
+              </div>
+            </mat-expansion-panel>
+          </div>
+      </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="padded">
+    <app-map></app-map>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

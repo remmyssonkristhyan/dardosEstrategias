@@ -1,0 +1,9 @@
+<section>
+  <header><h2>Camadas base</h2></header>
+  <button mat-button *ngFor="let baseLayer of baseLayers" style="width: 100%; text-align: left;"><span>{{baseLayer}}</span></button>
+</section>
+<br>
+<section>
+  <header><h2>Outras Camadas</h2></header>
+  <button mat-button *ngFor="let overlay of overlays" style="width: 100%; text-align: left;"><span>{{overlay}}</span></button>
+</section>
