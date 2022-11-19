@@ -8,7 +8,7 @@ export class MenuItem {
 
 export const menuList = [
   new MenuItem('Camadas', 'chemistry class material', 'layers'),
-  new MenuItem('Minha Localização', 'biology class material', 'location_on'),
   new MenuItem('Isócrona', 'mathematics class material', 'polyline'),
   new MenuItem('Raio', 'physics class material', 'motion_photos_off'),
+  new MenuItem('Mapa de Calor', 'biology class material', 'thermostat'),
 ];

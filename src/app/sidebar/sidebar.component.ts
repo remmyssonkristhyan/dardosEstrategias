@@ -11,11 +11,18 @@ export class SidebarComponent implements OnInit {
   sideMenu = menuList;
   collapse = false;
 
+  isochrone: any;
+
   constructor() {}
 
   ngOnInit(): void {}
 
+  receiveIsochrone($event) {
+    this.isochrone = $event;
+  }
+
   toggleSidebar() {
     this.collapse = !this.collapse;
   }
+
 }

@@ -24,6 +24,7 @@ import { MatCardModule } from '@angular/material/card';
 import { LayersComponent } from './layers/layers.component';
 import { IsochroneComponent } from './isochrone/isochrone.component';
 import { MatSliderModule } from '@angular/material/slider';
+import { RadiusComponent } from './radius/radius.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatSliderModule } from '@angular/material/slider';
     MappositionComponent,
     LayersComponent,
     IsochroneComponent,
+    RadiusComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import H from '@here/maps-api-for-javascript';
 import * as L from 'leaflet';
 import { control, map, tileLayer } from 'leaflet';
 import Geocoder from 'leaflet-control-geocoder';
+import { IsochroneService } from '../_services/isochrone.service';
 
 @Component({
   selector: 'app-map',
@@ -26,6 +27,10 @@ export class MapComponent implements OnInit {
   maceio = 'lat=-9.66512&lon=-35.7356';
 
   geoapifyApiKey = '3f6120b029ff4414a461d81ab5937ffd';
+  myGeoJSONLayer;
+
+
+  constructor(private isochrone: IsochroneService) {}
 
   ngOnInit() {
     const style = 'normal.day';
@@ -91,7 +96,12 @@ export class MapComponent implements OnInit {
     GeocoderControl.on('markgeocode', function (e) {
       console.log(e);
     });
+
+    this.isochrone.emitirIsocrona.subscribe(
+      isocrona => this.drawIsoline(isocrona)
+    );
   }
+
 
   getLocation() {
     if (navigator.geolocation) {
@@ -106,6 +116,38 @@ export class MapComponent implements OnInit {
     } else {
       alert('Geolocation not supported');
     }
+  }
+
+  drawIsoline(data) {
+    if(this.myGeoJSONLayer) {
+      this.myGeoJSONLayer.remove();
+    }
+
+    var requestOptions = {
+      method: 'GET',
+    };
+    fetch(`https://api.geoapify.com/v1/isoline?lat=-9.66512&lon=-35.7356&type=${data.type}&mode=${data.mode}&range=${data.range}&apiKey=3f6120b029ff4414a461d81ab5937ffd`, requestOptions
+    )
+      .then((response) => response.json())
+      .then((geoJSONFeatures) => {
+        this.myGeoJSONLayer = L.geoJSON(geoJSONFeatures, {
+          style: (feature) => {
+            return {
+              stroke: true,
+              color: '#9933ff',
+              weight: 2,
+              opacity: 0.7,
+              fill: true,
+              fillColor: '#7300e6',
+              fillOpacity: 0.15,
+              smoothFactor: 0.5,
+              interactive: false,
+            };
+          },
+        });
+
+        this.myGeoJSONLayer.addTo(this.map);
+      });
   }
 
   // private getCoordinates(query: string) {
@@ -126,34 +168,8 @@ export class MapComponent implements OnInit {
   //   });
   // }
 
-  drawIsoline() {
-    var requestOptions = {
-      method: 'GET',
-    };
-    let myGeoJSONLayer;
-    fetch(
-      'https://isoline.router.hereapi.com/v8/isolines?transportMode=car&range[type]=distance&range[values]=3000&origin=52.5308,13.3847&apikey=N9GW7XnvM6mbqaUGAZEuCWceUJY2iOv0V_6HmfOzTfce',
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((geoJSONFeatures) => {
-        myGeoJSONLayer = L.geoJSON(geoJSONFeatures, {
-          style: (feature) => {
-            return {
-              stroke: true,
-              color: '#9933ff',
-              weight: 2,
-              opacity: 0.7,
-              fill: true,
-              fillColor: '#7300e6',
-              fillOpacity: 0.15,
-              smoothFactor: 0.5,
-              interactive: false,
-            };
-          },
-        });
-
-        myGeoJSONLayer.addTo(this.map);
-      });
-  }
 }
+
+
+// myGeoJSONLayer.addTo(this.map);
+// https://api.geoapify.com/v1/isoline?lat=39.10052013895695&lon=-76.78959305536686&type=${data.type}&mode=${data.mode}&range=${data.range}&apiKey=3f6120b029ff4414a461d81ab5937ffd
