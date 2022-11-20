@@ -25,6 +25,7 @@ import { IsochroneComponent } from './isochrone/isochrone.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { RadiusComponent } from './radius/radius.component';
 import { HeatmapComponent } from './heatmap/heatmap.component';
+import { FilesComponent } from './files/files.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
     IsochroneComponent,
     RadiusComponent,
     HeatmapComponent,
+    FilesComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,7 @@ import { HeatmapComponent } from './heatmap/heatmap.component';
     MatSidenavModule,
     MatExpansionModule,
     MatCardModule,
-    MatSliderModule,
+    MatSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent],

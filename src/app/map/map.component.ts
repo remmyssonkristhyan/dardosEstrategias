@@ -4,6 +4,11 @@ import * as L from 'leaflet';
 import { control, map, tileLayer } from 'leaflet';
 import Geocoder from 'leaflet-control-geocoder';
 import { MapService } from '../_services/map.service';
+import  {heatData} from '../../assets/realworld.10000';
+import 'heatmap.js';
+
+
+declare const HeatmapOverlay: any;
 
 @Component({
   selector: 'app-map',
@@ -50,8 +55,8 @@ export class MapComponent implements OnInit {
 
     const baseMaps = {
       'Mapa Base': tileLayer(hereTileUrl),
-      Hibrido: tileLayer(hereHibridMap),
-      Satelite: tileLayer(hereSatelliteMap),
+      'Hibrido': tileLayer(hereHibridMap),
+      'Satelite': tileLayer(hereSatelliteMap),
     };
 
     var overlayMaps = {
@@ -65,7 +70,7 @@ export class MapComponent implements OnInit {
           opacity: 0.7,
         }
       ),
-      Rodovias: tileLayer.wms('https://geoservicos.ibge.gov.br/geoserver/wms', {
+      'Rodovias': tileLayer.wms('https://geoservicos.ibge.gov.br/geoserver/wms', {
         layers: 'CGMAT:pbqg22_00_Bc250_2021TrechoRod_complex	',
         transparent: true,
         format: 'image/png',
@@ -128,6 +133,78 @@ export class MapComponent implements OnInit {
         this.map.addLayer(this.circle)
       }
     )
+
+    this.mapService.emitirHeatLayer.subscribe(
+      () => {
+        // Setting up heat layer config
+    const heatLayerConfig = {
+      "radius": 5,
+      "maxOpacity": .8,
+      "scaleRadius": true,
+      // property below is responsible for colorization of heat layer
+      "useLocalExtrema": true,
+      // here we need to assign property value which represent lat in our data
+      latField: 'lat',
+      // here we need to assign property value which represent lng in our data
+      lngField: 'lng',
+      // here we need to assign property value which represent valueField in our data
+      valueField: 'count'
+    };
+
+    // Initialising heat layer and passing config
+    const heatmapLayer = new HeatmapOverlay(heatLayerConfig);
+
+    //Passing data to a layer
+    heatmapLayer.setData(heatData);
+    console.log(heatData);
+
+    //Adding heat layer to a map
+    heatmapLayer.addTo(this.map);
+      }
+    )
+
+    this.mapService.emitirLayer.subscribe(
+      layername => {
+        Object.keys(baseMaps).forEach((item) => {
+          if(layername === 'Hibrido') {
+            if(baseMaps['Satelite']) {
+              this.map.removeLayer(baseMaps['Satelite']);
+            }
+            this.map.addLayer(baseMaps['Hibrido'])
+          }
+          if (layername === 'Mapa Base') {
+            if(baseMaps['Hibrido']) {
+              this.map.removeLayer(baseMaps['Hibrido']);
+            }
+            if(baseMaps['Satelite']) {
+              this.map.removeLayer(baseMaps['Satelite']);
+            }
+            this.map.addLayer(baseMaps['Mapa Base'])
+          }
+          if (layername === 'Satelite') {
+            this.map.addLayer(baseMaps['Satelite'])
+          }
+        });
+
+        Object.keys(overlayMaps).forEach((item) => {
+          if(layername === 'Áreas densamente edificadas') {
+            this.map.addLayer(overlayMaps['Áreas densamente edificadas'])
+          }
+          if (layername === 'Árranjos populacionais') {
+            this.map.addLayer(overlayMaps['Árranjos populacionais'])
+          }
+          if (layername === 'Rodovias') {
+            this.map.addLayer(overlayMaps['Rodovias'])
+          }
+        });
+
+        if(layername === 'clear') {
+          Object.keys(overlayMaps).forEach((item) => {
+            this.map.removeLayer(overlayMaps[item])
+          })
+        }
+      }
+    )
   }
 
 
@@ -177,6 +254,7 @@ export class MapComponent implements OnInit {
 
         this.myGeoJSONLayer.addTo(this.map);
       });
+
   }
 
   // private getCoordinates(query: string) {

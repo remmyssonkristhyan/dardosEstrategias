@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MapService } from '../_services/map.service';
 
 @Component({
   selector: 'app-heatmap',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./heatmap.component.scss']
 })
 export class HeatmapComponent implements OnInit {
+  isSelected = false;
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
   ngOnInit(): void {
+  }
+
+  onClick(){
+    this.isSelected = !this.isSelected;
+    this.mapService.setHeatLayer(this.isSelected);
   }
 
 }

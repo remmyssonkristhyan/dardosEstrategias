@@ -11,4 +11,5 @@ export const menuList = [
   new MenuItem('Isócrona', 'mathematics class material', 'polyline'),
   new MenuItem('Raio', 'physics class material', 'motion_photos_off'),
   new MenuItem('Mapa de Calor', 'biology class material', 'thermostat'),
+  new MenuItem('Adicionar arquivo de camada', 'biology class material', 'upload_file'),
 ];

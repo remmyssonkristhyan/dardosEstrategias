@@ -17,6 +17,8 @@
               <app-layers *ngIf="i.name === 'Camadas'"></app-layers>
               <app-isochrone *ngIf="i.name === 'Isócrona'" (event)="receiveIsochrone($event)"></app-isochrone>
               <app-radius *ngIf="i.name === 'Raio'"></app-radius>
+              <app-heatmap *ngIf="i.name === 'Mapa de Calor'"></app-heatmap>
+              <app-files *ngIf="i.name === 'Adicionar arquivo de camada'"></app-files>
             </mat-expansion-panel>
           </div>
       </div>

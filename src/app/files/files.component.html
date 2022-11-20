@@ -1,0 +1,3 @@
+<button type="button" mat-raised-button (click)="onUpload()">Enviar arquivo</button>
+<input hidden (change)="onFileSelected($event)" #fileInput type="file">
+<span class="file-name">{{selectedFile?.name}}</span>

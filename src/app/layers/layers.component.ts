@@ -1,3 +1,4 @@
+import { MapService } from './../_services/map.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,14 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layers.component.scss'],
 })
 export class LayersComponent implements OnInit {
-  baseLayers = ['Mapa Base', 'Híbrido', 'Satélite'];
+  baseLayers = ['Mapa Base', 'Hibrido', 'Satelite'];
   overlays = [
     'Áreas densamente edificadas',
     'Rodovias',
-    'Arranjos Populacionais',
+    'Árranjos populacionais',
   ];
 
-  constructor() {}
+  constructor(private mapService: MapService) {}
 
   ngOnInit(): void {}
+
+  changeLayer(data) {
+    this.mapService.setLayer(data);
+  }
 }

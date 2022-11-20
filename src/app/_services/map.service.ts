@@ -10,6 +10,8 @@ export class MapService {
   emitirIsocrona = new EventEmitter<any>();
   emitirMarcador = new EventEmitter<any>();
   emitirRaio = new EventEmitter<any>();
+  emitirHeatLayer = new EventEmitter<any>();
+  emitirLayer = new EventEmitter<any>();
   isochrone: {
     mode: string,
     type: string,
@@ -28,5 +30,13 @@ export class MapService {
 
   setRadius(data) {
     this.emitirRaio.emit(data);
+  }
+
+  setHeatLayer(data) {
+    this.emitirHeatLayer.emit(data);
+  }
+
+  setLayer(data) {
+    this.emitirLayer.emit(data);
   }
 }
