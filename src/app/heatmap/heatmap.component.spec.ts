@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MappositionComponent } from './mapposition.component';
+import { HeatmapComponent } from './heatmap.component';
 
-describe('MappositionComponent', () => {
-  let component: MappositionComponent;
-  let fixture: ComponentFixture<MappositionComponent>;
+describe('HeatmapComponent', () => {
+  let component: HeatmapComponent;
+  let fixture: ComponentFixture<HeatmapComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MappositionComponent ]
+      declarations: [ HeatmapComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MappositionComponent);
+    fixture = TestBed.createComponent(HeatmapComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -16,7 +16,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { LoginComponent } from './login/login.component';
-import { MappositionComponent } from './mapposition/mapposition.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -25,6 +24,7 @@ import { LayersComponent } from './layers/layers.component';
 import { IsochroneComponent } from './isochrone/isochrone.component';
 import { MatSliderModule } from '@angular/material/slider';
 import { RadiusComponent } from './radius/radius.component';
+import { HeatmapComponent } from './heatmap/heatmap.component';
 
 @NgModule({
   declarations: [
@@ -33,10 +33,10 @@ import { RadiusComponent } from './radius/radius.component';
     HeaderComponent,
     SidebarComponent,
     LoginComponent,
-    MappositionComponent,
     LayersComponent,
     IsochroneComponent,
     RadiusComponent,
+    HeatmapComponent,
   ],
   imports: [
     BrowserModule,

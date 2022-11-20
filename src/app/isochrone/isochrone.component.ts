@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
-import { IsochroneService } from '../_services/isochrone.service';
 import { FormGroup } from '@angular/forms';
+import { MapService } from '../_services/map.service';
 
 @Component({
   selector: 'app-isochrone',
@@ -8,13 +8,13 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./isochrone.component.scss'],
 })
 export class IsochroneComponent implements OnInit {
-  constructor(private isochrone: IsochroneService) {}
+  constructor(private mapService: MapService) {}
   type;
   range = 0;
   ngOnInit(): void {}
 
   onSubmit(form) {
    form.value.range = form.value.range.toString();
-    this.isochrone.setIsochrone(form.value);
+    this.mapService.setIsochrone(form.value);
   }
 }

@@ -1,24 +1,32 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { EventEmitter, Injectable } from '@angular/core';
+import { data } from '@here/maps-api-for-javascript';
 import * as L from 'leaflet';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class MarkerService {
+export class MapService {
+  emitirIsocrona = new EventEmitter<any>();
+  emitirMarcador = new EventEmitter<any>();
+  emitirRaio = new EventEmitter<any>();
+  isochrone: {
+    mode: string,
+    type: string,
+    range: string
+  };
 
-  baseUrl = 'http://localhost:3000/data';
+  constructor() { }
 
-  constructor(private http: HttpClient) { }
+  setIsochrone(data) {
+    this.emitirIsocrona.emit(data);
+  }
 
-  makeMarkers(map: L.Map): void {
-    this.http.get(this.baseUrl).subscribe((res: any) => {
-      for(const c of res) {
-        const lat = c.coordinates[0];
-        const lon = c.coordinates[1];
-        const marker = L.marker([lon, lat]).addTo(map);
-      }
-    });
+  setMarker(data) {
+    this.emitirMarcador.emit(data);
+  }
 
+  setRadius(data) {
+    this.emitirRaio.emit(data);
   }
 }

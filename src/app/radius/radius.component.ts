@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { MatSliderChange } from '@angular/material/slider';
+import { MapService } from '../_services/map.service';
 
 @Component({
   selector: 'app-radius',
@@ -6,14 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./radius.component.scss']
 })
 export class RadiusComponent implements OnInit {
+  isSelected = false;
+  radius = 0;
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(form) {
+  onInputChange(event: MatSliderChange) {
+    this.radius = event.value;
+    this.mapService.setRadius(this.radius);
+  }
 
+  addMarker(){
+    this.isSelected = !this.isSelected;
+    this.mapService.setMarker(this.isSelected);
   }
 
 }

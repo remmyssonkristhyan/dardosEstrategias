@@ -3,7 +3,7 @@ import H from '@here/maps-api-for-javascript';
 import * as L from 'leaflet';
 import { control, map, tileLayer } from 'leaflet';
 import Geocoder from 'leaflet-control-geocoder';
-import { IsochroneService } from '../_services/isochrone.service';
+import { MapService } from '../_services/map.service';
 
 @Component({
   selector: 'app-map',
@@ -28,9 +28,12 @@ export class MapComponent implements OnInit {
 
   geoapifyApiKey = '3f6120b029ff4414a461d81ab5937ffd';
   myGeoJSONLayer;
+  marker;
+  marKercoords;
+  circle;
 
 
-  constructor(private isochrone: IsochroneService) {}
+  constructor(private mapService: MapService) {}
 
   ngOnInit() {
     const style = 'normal.day';
@@ -97,10 +100,36 @@ export class MapComponent implements OnInit {
       console.log(e);
     });
 
-    this.isochrone.emitirIsocrona.subscribe(
+    this.mapService.emitirIsocrona.subscribe(
       isocrona => this.drawIsoline(isocrona)
     );
+
+    this.mapService.emitirMarcador.subscribe(
+      isSelected => {
+        if(isSelected) {
+          this.map.on('click', e => {
+            if(this.marker) {
+              this.map.removeLayer(this.marker);
+            }
+            this.marKercoords = e.latlng;
+            this.marker = new L.Marker(this.marKercoords, {draggable:true});
+            this.map.addLayer(this.marker);
+          })
+        }
+      }
+    )
+
+    this.mapService.emitirRaio.subscribe(
+      raio => {
+        if(this.circle) {
+          this.map.removeLayer(this.circle);
+        }
+        this.circle = L.circle(this.marKercoords, {radius: raio*1000})
+        this.map.addLayer(this.circle)
+      }
+    )
   }
+
 
 
   getLocation() {
